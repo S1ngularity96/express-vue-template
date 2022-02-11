@@ -1,43 +1,57 @@
-var install = function (Vue, options) {
-    const store = options.store;
-    const methods = {
-         success: function (msg) {
-              store.commit('pushMsgToSnackbar', msg);
-              store.commit('changeSnackbarType', 'success');
-              store.commit('showSnackbar');
-         },
-         info: function (msg) {
-              store.commit('pushMsgToSnackbar', msg);
-              store.commit('changeSnackbarType', 'info');
-              store.commit('showSnackbar');
-         },
-         error: function (msg) {
-              store.commit('pushMsgToSnackbar', msg);
-              store.commit('changeSnackbarType', 'error');
-              store.commit('showSnackbar');
-         },
-         errorserverconnection: function () {
-              store.commit('pushMsgToSnackbar', 'Connection to server failed');
-              store.commit('changeSnackbarType', 'error');
-              store.commit('showSnackbar');
-         },
-         missingfeature: function () {
-              store.commit('pushMsgToSnackbar', 'The setting or action is not available');
-              store.commit('changeSnackbarType', 'error');
-              store.commit('showSnackbar');
-         },
-         errorhandle: function (err) {
-              if (typeof err.message !== 'undefined') {
-                   this.error(err.message)
-              } else {
-                   this.errorserverconnection()
+const install = function (Vue) {
+     Vue.prototype.$snackbar = {};
+     Vue.prototype.$snackbar.success = () => {
+          console.error("Not implemented function");
+     };
+     Vue.prototype.$snackbar.error = () => {
+          console.error("Not implemented function");
+     };
+     Vue.prototype.$snackbar.info = () => {
+          console.error("Not implemented function");
+     };
 
-              }
-         }
-    }
-    Vue.prototype.$snackbar = methods;
-}
+     Vue.prototype.$snackbar.registerCallbacks = function (
+          onSuccess,
+          onError,
+          onInfo,
+          setText,
+     ) {
+          Vue.prototype.$snackbar.success = (msg) => {
+               onSuccess();
+               setText(msg);
+          };
+          Vue.prototype.$snackbar.error = (msg) => {
+               onError();
+               setText(msg);
+          };
+          Vue.prototype.$snackbar.errorhandle = (err) => {
+               onError();
+               if (err.response && err.response.data) {
+                    setText(err.response.data.message)
+               } else {
+                    setText(err.toString());
+               }
+          }
+
+          Vue.prototype.$snackbar.info = (msg) => {
+               onInfo();
+               setText(msg);
+          };
+     };
+
+     Vue.prototype.$snackbar.unregister = function () {
+          Vue.prototype.$snackbar.success = () => {
+               console.error("Not implemented function");
+          };
+          Vue.prototype.$snackbar.error = () => {
+               console.error("Not implemented function");
+          };
+          Vue.prototype.$snackbar.info = () => {
+               console.error("Not implemented function");
+          };
+     };
+};
 
 export default {
-    install
-}
+     install,
+};

@@ -1,57 +1,65 @@
 <template>
-  <v-snackbar
-    class="snackbar"
-    v-model="snackbar"
-    :timeout="countdown"
-    :top="true"
-    :color="type"
-    
-    absolute
-    
-  >
-    <span v-html="message"></span>
-    <template v-slot:action="{attrs}">
-      <v-btn text v-bind="attrs" @click="close()">Close</v-btn>
-    </template> 
-    
-  </v-snackbar>
+  <div class="text-center">
+    <v-snackbar
+      :dark="$vuetify.theme.dark"
+      app
+      top
+      absolute
+      :color="color"
+      v-model="snackbar"
+      :timeout="timeout"
+    >
+      <span v-if="!array">{{text}}</span>
+      <span v-else v-for="(msg,index) in text" :key="index">{{msg}}<br></span>
+      <template v-slot:action="{ attrs }">
+        <v-btn text v-bind="attrs" @click="snackbar = false"> Close </v-btn>
+      </template>
+    </v-snackbar>
+  </div>
 </template>
 
 <script>
 export default {
-  data: () => {
+  data() {
     return {
-      countdown: 5000,
+      snackbar: false,
+      text: "",
+      timeout: 3000,
+      color: "primary",
+      array: false,
     };
   },
   methods: {
-    close() {
-      this.$store.commit("closeSnackbar");
+    setText(msg) {
+      if (Array.isArray(msg)) {
+        this.array = true;
+        this.text = msg;
+      } else {
+        this.array = false;
+        this.text = msg;
+      }
+      this.snackbar = true;
+    },
+    success() {
+      this.color = "green";
+    },
+    error() {
+      this.color = "red";
+    },
+    info() {
+      this.color = "blue";
     },
   },
-  computed: {
-    snackbar: {
-      get() {
-        return this.$store.state.displaySnackbar;
-      },
-      set(value) {
-        this.$store.commit("closeSnackbar", value);
-      },
-    },
-    message() {
-      return this.$store.getters.snackbarMessage;
-    },
-    type() {
-      if (this.$store.getters.snackbarType === "success") {
-        return "success";
-      } else if (this.$store.getters.snackbarType === "error") {
-        return "error";
-      } else if (this.$store.getters.snackbarType === "info") {
-        return "info";
-      }
-      return "info";
-    },
+  mounted() {
+    this.$snackbar.registerCallbacks(
+      this.success,
+      this.error,
+      this.info,
+      this.setText
+    );
+  },
+  beforeDestroy() {
+    this.$snackbar.unregister();
   },
 };
 </script>
-

@@ -1,40 +1,40 @@
-[![pipeline status](http://gitlab.vemac.de/oct/oct-manager/badges/master/pipeline.svg)](http://gitlab.vemac.de/oct/oct-manager/-/commits/master)
 
-# OCT-Manager
+# Vue+Vuetify Boilerplate
 
-!["Bild"](./docs/landingpage.png)
 
-## Beschreibung
+## Commands
 
-Ist das Frontend für die aktuelle Landingpage des OCT. 
-
-## Kommandos
-
-### Vue UI - Grafische Benutzeroberfläche für die Verwaltung des Projekts
+### Vue UI 
 
 ```
 vue ui
 ```
 
-### Projektsetup
+### Setup
 
 ```
 yarn install
 ```
 
-### Kompilierung und Hot-Reload für die Entwicklung
+### Compile for development
 
 ```
 yarn serve
 ```
 
-### Kompiliert und erstellt ein Build
+### Build static files
 
 ```
 yarn build
 ```
 
-### Lints und repariert Dateien
+### Deploy to backend
+
+```
+yarn deploy
+```
+
+### Lint 
 
 ```
 yarn lint

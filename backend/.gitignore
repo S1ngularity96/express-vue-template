@@ -1,0 +1,6 @@
+node_modules/
+database.sqlite
+yarn.lock
+apps/App_*
+readme
+database.test.sqlite

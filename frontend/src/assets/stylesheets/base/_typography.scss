@@ -1,0 +1,9 @@
+/**
+ * Basic typography style for copy text
+ */
+@import '../base/colors';
+
+label {
+	font-family: "Halvatica";
+	color: $dark-blue;
+}

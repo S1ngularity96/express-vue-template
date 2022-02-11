@@ -1,0 +1,35 @@
+{
+  "name": "express-vue-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate for Express+Vue+Vuetify",
+  "main": "index.js",
+  "repository": "",
+  "author": "Andrei Alexeev",
+  "license": "UNLICENSED",
+  "scripts": {
+    "serve": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development node server.js",
+    "test": "env NODE_ENV=test mocha './src/test/**/*.js'"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-history-api-fallback": "^1.6.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "db.sqlite3": "^1.0.8",
+    "express.js": "^1.0.0",
+    "module-alias": "^2.2.2",
+    "morgan": "^1.10.0",
+    "sequelize": "^5.21.6",
+    "socket.io": "^4.0.2",
+    "wireless-tools": "^0.19.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2"
+  },
+  "_moduleAliases": {
+    "@": ".",
+    "@src": "./src"
+  }
+}

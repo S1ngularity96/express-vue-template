@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer  app>
+  <v-navigation-drawer app>
     <v-list nav>
       <template v-for="item in navbar">
         <v-list-group
@@ -39,10 +39,8 @@
 </template>
 
 <script>
-import Snackbar from "@/mixins/snackbar";
 export default {
   props: ["value", "theme"],
-  mixins: [Snackbar],
   data() {
     return {
       navbar: [],

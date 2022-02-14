@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import Home from '../components/views/Home'
+import Network from '../components/views/Network'
+import Settings from '../components/views/Settings';
 
 Vue.use(VueRouter);
 
@@ -10,7 +13,17 @@ const routes = [
 		name: 'Home',
 		component: Home
 	},
-	
+	{
+		path: '/network',
+		name: 'Network',
+		component: Network
+	},
+	{
+		path: '/settings',
+		name: 'Settings',
+		component: Settings
+	}
+
 ];
 
 const router = new VueRouter({

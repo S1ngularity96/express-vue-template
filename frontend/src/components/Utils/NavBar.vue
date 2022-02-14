@@ -63,13 +63,13 @@ export default {
       {
         Title: this.$t("Nav.Network"),
         Icon: "mdi-network",
-        To: "/",
+        To: "/network",
         Click: () => {},
       },
       {
         Title: this.$t("Nav.Settings"),
         Icon: "mdi-cog",
-        To: "/",
+        To: "/settings",
         Click: () => {},
       },
 

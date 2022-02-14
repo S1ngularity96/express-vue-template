@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 import Home from '../components/views/Home'
 import Network from '../components/views/Network'
 import Settings from '../components/views/Settings';
-
+import NotFound from '../components/views/NotFound'
 Vue.use(VueRouter);
 
 const routes = [
@@ -22,6 +22,10 @@ const routes = [
 		path: '/settings',
 		name: 'Settings',
 		component: Settings
+	},
+	{
+		path: '*',
+		component: NotFound
 	}
 
 ];

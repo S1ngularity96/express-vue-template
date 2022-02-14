@@ -2,7 +2,10 @@ require('module-alias/register')
 const http = require('http');
 const os = require('os')
 const WebSocket = require('@/src/util/websocket');
-const { frontend, frontendport } = require('@/frontend');
+
+if (!process.env.STATIC_SERVER === "nginx"){
+	const { frontend, frontendport } = require('@/frontend');
+}
 const { backend, backendport } = require("@/backend");
 
 async function StartServer() {
@@ -16,9 +19,13 @@ async function StartServer() {
 				SockIo.emit("/time", new Date().toTimeString())
 			}, 1000)
 		})
-		frontend.listen(frontendport, function () {
-			console.log(`Webapplication - http://127.0.0.1:${frontendport}`);
-		});
+
+		if (!process.env.STATIC_SERVER === "nginx"){
+			frontend.listen(frontendport, function () {
+				console.log(`Webapplication - http://127.0.0.1:${frontendport}`);
+			});
+		}
+		
 
 	} catch (err) {
 		console.error('Server did not start', err);

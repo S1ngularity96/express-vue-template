@@ -8,6 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "serve": "NODE_ENV=production node server.js",
+    "nginx": "NODE_ENV=development STATIC_SERVER=nginx node server.js",
     "dev": "NODE_ENV=development node server.js",
     "test": "env NODE_ENV=test mocha './src/test/**/*.js'"
   },

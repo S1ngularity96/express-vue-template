@@ -1,16 +1,18 @@
 <template>
   <div class="text-center">
     <v-snackbar
-      :dark="$vuetify.theme.dark"
-      app
+    class="snackbar"
+    :dark="$vuetify.theme.dark" 
       top
       absolute
       :color="color"
       v-model="snackbar"
       :timeout="timeout"
     >
-      <span v-if="!array">{{text}}</span>
-      <span v-else v-for="(msg,index) in text" :key="index">{{msg}}<br></span>
+      <span v-if="!array">{{ text }}</span>
+      <span v-else v-for="(msg, index) in text" :key="index"
+        >{{ msg }}<br
+      /></span>
       <template v-slot:action="{ attrs }">
         <v-btn text v-bind="attrs" @click="snackbar = false"> Close </v-btn>
       </template>
@@ -63,3 +65,5 @@ export default {
   },
 };
 </script>
+
+
